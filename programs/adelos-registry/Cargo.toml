@@ -1,0 +1,20 @@
+[package]
+name = "adelos-registry"
+version = "0.1.0"
+description = "Privacy Registry for Adelos Protocol - Stealth Address Metadata Storage"
+edition = "2021"
+license = "MIT"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "adelos_registry"
+
+[features]
+no-entrypoint = []
+no-idl = []
+no-log-ix-name = []
+cpi = ["no-entrypoint"]
+default = []
+
+[dependencies]
+anchor-lang = "0.30.1"
