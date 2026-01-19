@@ -1,0 +1,38 @@
+# Rust/Cargo
+target/
+**/*.rs.bk
+Cargo.lock
+
+# Anchor
+.anchor/
+test-ledger/
+
+# Program keypairs (NEVER commit these!)
+*-keypair.json
+deploy-wallet.json
+
+# IDL (regenerated on build)
+target/idl/
+target/types/
+
+# Node (if using JS tests)
+node_modules/
+package-lock.json
+yarn.lock
+
+# Environment
+.env
+.env.*
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

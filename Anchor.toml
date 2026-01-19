@@ -1,19 +1,21 @@
+[toolchain]
+
 [features]
-seeds = false
+resolution = true
 skip-lint = false
 
-[programs.localnet]
-adelos_registry = "AdeL5RWqQJLDd33WPEggNJxuFmYa5oLXQHYu6Jv3Svae"
-
 [programs.devnet]
+adelos_registry = "7T1UxHJ6psKiQheKZXxANu6mhgsmgaX55eNKZZL5u4Rp"
+
+[programs.localnet]
 adelos_registry = "AdeL5RWqQJLDd33WPEggNJxuFmYa5oLXQHYu6Jv3Svae"
 
 [registry]
 url = "https://api.apr.dev"
 
 [provider]
-cluster = "Localnet"
+cluster = "devnet"
 wallet = "~/.config/solana/id.json"
 
 [scripts]
-test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/**/*.ts"
+test = "cargo test"
