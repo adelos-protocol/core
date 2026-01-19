@@ -2,6 +2,20 @@ use anchor_lang::prelude::*;
 
 declare_id!("7T1UxHJ6psKiQheKZXxANu6mhgsmgaX55eNKZZL5u4Rp");
 
+#[cfg(not(feature = "no-entrypoint"))]
+use solana_security_txt::security_txt;
+
+#[cfg(not(feature = "no-entrypoint"))]
+security_txt! {
+    name: "Adelos Registry",
+    project_url: "https://github.com/adelos-protocol/core",
+    contacts: "email:albary6700@gmail.com,link:https://github.com/adelos-protocol/core/issues",
+    policy: "https://github.com/adelos-protocol/core/blob/main/SECURITY.md",
+    preferred_languages: "en",
+    source_code: "https://github.com/adelos-protocol/core",
+    auditors: "N/A"
+}
+
 const DISCRIMINATOR_SIZE: usize = 8;
 const REGISTRY_ACCOUNT_SIZE: usize = DISCRIMINATOR_SIZE + 32 + 32 + 1;
 
