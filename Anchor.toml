@@ -7,9 +7,6 @@ skip-lint = false
 [programs.devnet]
 adelos_registry = "7T1UxHJ6psKiQheKZXxANu6mhgsmgaX55eNKZZL5u4Rp"
 
-[programs.localnet]
-adelos_registry = "AdeL5RWqQJLDd33WPEggNJxuFmYa5oLXQHYu6Jv3Svae"
-
 [registry]
 url = "https://api.apr.dev"
 

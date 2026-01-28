@@ -37,12 +37,17 @@ pub mod adelos_registry {
 
     pub fn update_identity(ctx: Context<UpdateIdentity>, new_meta_pubkey: [u8; 32]) -> Result<()> {
         require!(new_meta_pubkey != [0u8; 32], AdelosError::InvalidMetaPubkey);
+        
+        // Log for on-chain audit transparency
+        msg!("Updating meta_pubkey for owner: {}", ctx.accounts.owner.key());
+        
         let registry = &mut ctx.accounts.registry;
         registry.meta_pubkey = new_meta_pubkey;
         Ok(())
     }
 
-    pub fn close_registry(_ctx: Context<CloseRegistry>) -> Result<()> {
+    pub fn close_registry(ctx: Context<CloseRegistry>) -> Result<()> {
+        msg!("Closing registry for owner: {}", ctx.accounts.owner.key());
         Ok(())
     }
 }
@@ -64,14 +69,19 @@ pub struct RegisterIdentity<'info> {
 
 #[derive(Accounts)]
 pub struct UpdateIdentity<'info> {
+    #[account(mut)]
     pub owner: Signer<'info>,
     #[account(
         mut,
+        realloc = REGISTRY_ACCOUNT_SIZE,
+        realloc::payer = owner,
+        realloc::zero = false,
         seeds = [b"registry", owner.key().as_ref()],
         bump = registry.bump,
         has_one = owner @ AdelosError::Unauthorized
     )]
     pub registry: Account<'info, RegistryAccount>,
+    pub system_program: Program<'info, System>,
 }
 
 #[derive(Accounts)]
